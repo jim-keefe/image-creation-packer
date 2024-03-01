@@ -2,16 +2,16 @@
 
 ## Summary
 
-This repository has proof of concept code for creating vm images on Hyper-V for Windows Server 2022. See the sample output below.
+This repository has proof of concept code for creating vm images on Hyper-V for Windows Server 2022. See the sample output below for successful results.
 
 ## Requirements
 
 * The Hyper-V service with Windows 10/11.
 * Packer from Hashicorp installed on Windows.
 * The Hyper-V extension for Packer.
-* A url to the Windows Server 2022 ISO (a UNC path works too)
+* A URL to the Windows Server 2022 ISO (a UNC path works too)
 * DHCP is required to get an IP and TCP connectivity.
-  * Alternately a static IP could be used by configuring the autounattend.xml.
+  * Alternately a static IP could be used by configuring the NIC with a script in the autounattend.xml.
 * The Packer host needs WinRM connectivity on port 5986 to reach the target VM for the imaging process.
 
 ## Usage
@@ -32,7 +32,7 @@ packer build win2022-standard-eval.pkr.hcl
 
 ## Future Enhancements
 
-* Add pipeline functionality for build and test (maybe with jenkins).
+* Add pipeline functionality for build and test (maybe with Jenkins).
 * Set up a Windows Server 2019 image.
-* Add firewall rules on client system running packer.
+* Add firewall rules on the client system running Packer.
 * Add some naming conventions.

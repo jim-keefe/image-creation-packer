@@ -1,15 +1,13 @@
 param (
-    $vmName = "win-$((New-Guid).guid)",
-    $vhdxTemplatePath = "E:\output-windows-server-2022\Virtual Hard Disks\packer-windows-server-2022.vhdx",
-    $hyperVVMPath = "E:\VirtualMachines",
+    $vmName = "win-$(Get-Date -Format yyyyMMddhhmmssfff)",
+    $vhdxTemplatePath = "E:\Hyper-V\Templates\win2022\Virtual Hard Disks\packer-windows-server-2022.vhdx",
+    $hyperVVMPath = "E:\Hyper-V\VirtualMachines",
     $switchName = "External Switch Wireless",
     $generation = 1,
     $memory = (2*1024*1024*1024),
     $processorCount = 2,
     $createVM = $true
     )
-
-$vhdxName = (Get-Item $vhdxTemplatePath).Name
 
 # source in the functions
 $myscriptpath = $MyInvocation.MyCommand.Path
@@ -26,7 +24,8 @@ ValidateCreateFolder -path "$hyperVVMPath\$vmName\Virtual Hard Disks"
 Header -message "Copy the template vhdx" -level 2
 #======================================
 
-Copy-Item -Path $vhdxTemplatePath -Destination "$hyperVVMPath\$vmName\Virtual Hard Disks\$vhdxName"
+$vhdxDest = "$hyperVVMPath\$vmName\Virtual Hard Disks\$vmName.vhdx"
+Copy-Item -Path $vhdxTemplatePath -Destination $vhdxDest
 
 #======================================
 Header -message "Create the VM" -level 2
@@ -35,7 +34,7 @@ Header -message "Create the VM" -level 2
 
 $vmCreate = @{
     Name = $vmName
-    VHDPath = "$hyperVVMPath\$vmName\Virtual Hard Disks\$vhdxName"
+    VHDPath = $vhdxDest
     Path = $hyperVVMPath
     MemoryStartupBytes = $memory
     Generation = $generation
@@ -43,7 +42,6 @@ $vmCreate = @{
     switchName = $SwitchName
 }
 
-$vmCreate | select *
 if ($createVM){ New-VM @vmCreate }
 
 #======================================

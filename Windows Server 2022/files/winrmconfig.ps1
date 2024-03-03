@@ -13,6 +13,7 @@
 #wmic useraccount where "name='Administrator'" set PasswordExpires=FALSE
 
 Set-ExecutionPolicy Unrestricted -Scope LocalMachine -Force -ErrorAction Ignore
+Enable-PSRemoting -SkipNetworkProfileCheck -Force
 
 # Don't set this before Set-ExecutionPolicy as it throws an error
 $ErrorActionPreference = "stop"
@@ -45,4 +46,4 @@ cmd.exe /c netsh firewall add portopening TCP 5986 "Port 5986"
 # Restart WinRM, and set it so that it auto-launches on startup.
 cmd.exe /c net stop winrm
 cmd.exe /c sc config winrm start= auto
-cmd.exe /c net start winrm
+# cmd.exe /c net start winrm

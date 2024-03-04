@@ -32,9 +32,10 @@ build {
     inline = [
       "Set-ExecutionPolicy Bypass -Scope Process -Force",
       "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
-      "choco install -y openssh",
-      "New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22",
-      "Get-Service sshd"
+      "choco install -y python",
+      "choco install -y git",
+      "choco install -y sysinternals",
+      "choco install -y bginfo"
     ]
   }
 }

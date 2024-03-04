@@ -9,7 +9,7 @@ source "hyperv-iso" "windows-server-2022" {
   ]
 
   boot_wait      = "2m"
-  disk_size      = 61440
+  disk_size      = 35000
   guest_additions_mode = "disable"
   headless       = true
   output_directory = "E:/Hyper-V/Templates/win2022"

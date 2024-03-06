@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Create Image...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\Windows Server 2022\\\\create-image.ps1"'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Provision Test VM from Image...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\provisionhv-vm.ps1"'
+                echo 'Test VM Status...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "status"'
+                echo 'Test for VM IP...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "ip"'
+                echo 'Test WINRM Connection...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "ping"'
+                echo 'Test Python version...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "python"'
+                echo 'Test GIT version...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "git"'
+                echo 'Test for sysinternals (junction)...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "sysinternals"'
+                echo 'Test for BGInfo (junction)...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "bginfo"'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\deploy-image.ps1"'
+                
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}

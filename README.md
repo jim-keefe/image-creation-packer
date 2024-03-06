@@ -32,7 +32,8 @@ packer build win2022-standard-eval.pkr.hcl
 
 ## Future Enhancements
 
-* Add pipeline functionality for build and test (maybe with Jenkins).
+* Add pipeline functionality for build and test.
+  * Update: A working pipeline has been created with Jenkins.
 * Set up a Windows Server 2019 image.
 * Add firewall rules on the client system running Packer.
 * Add some naming conventions.

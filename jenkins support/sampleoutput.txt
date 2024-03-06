@@ -1,0 +1,527 @@
+Started by user Jim Keefe
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\Users\psmanage\AppData\Local\Jenkins\.jenkins\workspace\Windows 2022 Image Creation
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building...
+[Pipeline] powershell
+hyperv-iso.windows-server-2022: output will be in this color.
+
+==> hyperv-iso.windows-server-2022: Creating build directory...
+==> hyperv-iso.windows-server-2022: Retrieving ISO
+==> hyperv-iso.windows-server-2022: Trying E:/Hyper-V/ISOs/SERVER_EVAL_x64FRE_en-us.iso
+==> hyperv-iso.windows-server-2022: Trying file://E:/Hyper-V/ISOs/SERVER_EVAL_x64FRE_en-us.iso?checksum=md5%3Ae7908933449613edc97e1b11180429d1
+==> hyperv-iso.windows-server-2022: file://E:/Hyper-V/ISOs/SERVER_EVAL_x64FRE_en-us.iso?checksum=md5%3Ae7908933449613edc97e1b11180429d1 => E:/Hyper-V/ISOs/SERVER_EVAL_x64FRE_en-us.iso
+==> hyperv-iso.windows-server-2022: Creating floppy disk...
+    hyperv-iso.windows-server-2022: Copying files flatly from floppy_files
+    hyperv-iso.windows-server-2022: Copying file: files/autounattend.xml
+    hyperv-iso.windows-server-2022: Copying file: files/winrmconfig.ps1
+    hyperv-iso.windows-server-2022: Copying file: files/sysprep-autounattend.xml
+    hyperv-iso.windows-server-2022: Done copying files from floppy_files
+    hyperv-iso.windows-server-2022: Collecting paths from floppy_dirs
+    hyperv-iso.windows-server-2022: Resulting paths from floppy_dirs : []
+    hyperv-iso.windows-server-2022: Done copying paths from floppy_dirs
+    hyperv-iso.windows-server-2022: Copying files from floppy_content
+    hyperv-iso.windows-server-2022: Done copying files from floppy_content
+==> hyperv-iso.windows-server-2022: Creating switch 'External Switch Wireless' if required...
+==> hyperv-iso.windows-server-2022:     switch 'External Switch Wireless' already exists. Will not delete on cleanup...
+==> hyperv-iso.windows-server-2022: Creating virtual machine...
+==> hyperv-iso.windows-server-2022: Enabling Integration Service...
+==> hyperv-iso.windows-server-2022: Mounting os dvd drive E:/Hyper-V/ISOs/SERVER_EVAL_x64FRE_en-us.iso ...
+==> hyperv-iso.windows-server-2022: Mounting floppy drive...
+==> hyperv-iso.windows-server-2022: Skipping mounting Integration Services Setup Disk...
+==> hyperv-iso.windows-server-2022: Mounting secondary DVD images...
+==> hyperv-iso.windows-server-2022: Configuring vlan...
+==> hyperv-iso.windows-server-2022: Determine Host IP for HyperV machine...
+==> hyperv-iso.windows-server-2022: Host IP for the HyperV machine: 192.168.86.158
+==> hyperv-iso.windows-server-2022: Starting the virtual machine...
+==> hyperv-iso.windows-server-2022: Waiting 2m0s for boot...
+==> hyperv-iso.windows-server-2022: Typing the boot command...
+==> hyperv-iso.windows-server-2022: Waiting for WinRM to become available...
+    hyperv-iso.windows-server-2022: WinRM connected.
+==> hyperv-iso.windows-server-2022: Connected to WinRM!
+==> hyperv-iso.windows-server-2022: Provisioning with Powershell...
+==> hyperv-iso.windows-server-2022: Provisioning with powershell script: C:\Users\psmanage\AppData\Local\Temp\powershell-provisioner4023423735
+    hyperv-iso.windows-server-2022: Forcing web requests to allow TLS v1.2 (Required for requests to Chocolatey.org)
+    hyperv-iso.windows-server-2022: Getting latest version of the Chocolatey package for download.
+    hyperv-iso.windows-server-2022: Not using proxy.
+    hyperv-iso.windows-server-2022: Getting Chocolatey from https://community.chocolatey.org/api/v2/package/chocolatey/2.2.2.
+    hyperv-iso.windows-server-2022: Downloading https://community.chocolatey.org/api/v2/package/chocolatey/2.2.2 to C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip
+    hyperv-iso.windows-server-2022: Not using proxy.
+    hyperv-iso.windows-server-2022: Extracting C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip to C:\Users\ADMINI~1\AppData\Local\Temp\chocolatey\chocoInstall
+    hyperv-iso.windows-server-2022: Installing Chocolatey on the local machine
+    hyperv-iso.windows-server-2022: Creating ChocolateyInstall as an environment variable (targeting 'Machine')
+    hyperv-iso.windows-server-2022:   Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+    hyperv-iso.windows-server-2022: WARNING: It's very likely you will need to close and reopen your shell
+    hyperv-iso.windows-server-2022:   before you can use choco.
+    hyperv-iso.windows-server-2022: Restricting write permissions to Administrators
+    hyperv-iso.windows-server-2022: We are setting up the Chocolatey package repository.
+    hyperv-iso.windows-server-2022: The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+    hyperv-iso.windows-server-2022:   (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+    hyperv-iso.windows-server-2022: A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+    hyperv-iso.windows-server-2022:   and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Creating Chocolatey folders if they do not already exist.
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: chocolatey.nupkg file not installed in lib.
+    hyperv-iso.windows-server-2022:  Attempting to locate it from bootstrapper.
+    hyperv-iso.windows-server-2022: PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+    hyperv-iso.windows-server-2022: WARNING: Not setting tab completion: Profile file does not exist at
+    hyperv-iso.windows-server-2022: 'C:\Users\Administrator\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+    hyperv-iso.windows-server-2022: Chocolatey (choco.exe) is now ready.
+    hyperv-iso.windows-server-2022: You can call choco from anywhere, command line or powershell by typing choco.
+    hyperv-iso.windows-server-2022: Run choco /? for a list of functions.
+    hyperv-iso.windows-server-2022: You may need to shut down and restart powershell and/or consoles
+    hyperv-iso.windows-server-2022:  first prior to using choco.
+    hyperv-iso.windows-server-2022: Ensuring Chocolatey commands are on the path
+    hyperv-iso.windows-server-2022: Ensuring chocolatey.nupkg is in the lib folder
+    hyperv-iso.windows-server-2022: Chocolatey v2.2.2
+    hyperv-iso.windows-server-2022: Installing the following packages:
+    hyperv-iso.windows-server-2022: python
+    hyperv-iso.windows-server-2022: By installing, you accept licenses for the packages.
+    hyperv-iso.windows-server-2022: Progress: Downloading chocolatey-compatibility.extension 1.0.0... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: chocolatey-compatibility.extension v1.0.0 [Approved]
+    hyperv-iso.windows-server-2022: chocolatey-compatibility.extension package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  Installed/updated chocolatey-compatibility extensions.
+    hyperv-iso.windows-server-2022:  The install of chocolatey-compatibility.extension was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-compatibility'
+    hyperv-iso.windows-server-2022: Progress: Downloading chocolatey-core.extension 1.4.0... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: chocolatey-core.extension v1.4.0 [Approved]
+    hyperv-iso.windows-server-2022: chocolatey-core.extension package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  Installed/updated chocolatey-core extensions.
+    hyperv-iso.windows-server-2022:  The install of chocolatey-core.extension was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
+    hyperv-iso.windows-server-2022: Progress: Downloading chocolatey-windowsupdate.extension 1.0.5... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: chocolatey-windowsupdate.extension v1.0.5 [Approved]
+    hyperv-iso.windows-server-2022: chocolatey-windowsupdate.extension package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  Installed/updated chocolatey-windowsupdate extensions.
+    hyperv-iso.windows-server-2022:  The install of chocolatey-windowsupdate.extension was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-windowsupdate'
+    hyperv-iso.windows-server-2022: Progress: Downloading KB2919442 1.0.20160915... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: KB2919442 v1.0.20160915 [Approved]
+    hyperv-iso.windows-server-2022: KB2919442 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Skipping installation because this hotfix only applies to Windows 8.1 and Windows Server 2012 R2.
+    hyperv-iso.windows-server-2022:  The install of KB2919442 was successful.
+    hyperv-iso.windows-server-2022:   Software install location not explicitly set, it could be in package or
+    hyperv-iso.windows-server-2022:   default install location of installer.
+    hyperv-iso.windows-server-2022: Progress: Downloading KB2919355 1.0.20160915... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: KB2919355 v1.0.20160915 [Approved]
+    hyperv-iso.windows-server-2022: KB2919355 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Skipping installation because this hotfix only applies to Windows 8.1 and Windows Server 2012 R2.
+    hyperv-iso.windows-server-2022:  The install of KB2919355 was successful.
+    hyperv-iso.windows-server-2022:   Software install location not explicitly set, it could be in package or
+    hyperv-iso.windows-server-2022:   default install location of installer.
+    hyperv-iso.windows-server-2022: Progress: Downloading KB2999226 1.0.20181019... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: KB2999226 v1.0.20181019 [Approved] - Possibly broken
+    hyperv-iso.windows-server-2022: KB2999226 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Skipping installation because update KB2999226 does not apply to this operating system (Microsoft Windows Server 2022 Standard Evaluation).
+    hyperv-iso.windows-server-2022:  The install of KB2999226 was successful.
+    hyperv-iso.windows-server-2022:   Software install location not explicitly set, it could be in package or
+    hyperv-iso.windows-server-2022:   default install location of installer.
+    hyperv-iso.windows-server-2022: Progress: Downloading KB3035131 1.0.3... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: KB3035131 v1.0.3 [Approved]
+    hyperv-iso.windows-server-2022: KB3035131 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Skipping installation because update KB3035131 does not apply to this operating system (Microsoft Windows Server 2022 Standard Evaluation).
+    hyperv-iso.windows-server-2022:  The install of KB3035131 was successful.
+    hyperv-iso.windows-server-2022:   Software install location not explicitly set, it could be in package or
+    hyperv-iso.windows-server-2022:   default install location of installer.
+    hyperv-iso.windows-server-2022: Progress: Downloading KB3033929 1.0.5... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: KB3033929 v1.0.5 [Approved]
+    hyperv-iso.windows-server-2022: KB3033929 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Skipping installation because update KB3033929 does not apply to this operating system (Microsoft Windows Server 2022 Standard Evaluation).
+    hyperv-iso.windows-server-2022:  The install of KB3033929 was successful.
+    hyperv-iso.windows-server-2022:   Software install location not explicitly set, it could be in package or
+    hyperv-iso.windows-server-2022:   default install location of installer.
+    hyperv-iso.windows-server-2022: Progress: Downloading vcredist140 14.38.33135... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: vcredist140 v14.38.33135 [Approved]
+    hyperv-iso.windows-server-2022: vcredist140 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Downloading vcredist140-x86
+    hyperv-iso.windows-server-2022:   from 'https://download.visualstudio.microsoft.com/download/pr/71c6392f-8df5-4b61-8d50-dba6a525fb9d/510FC8C2112E2BC544FB29A72191EABCC68D3A5A7468D35D7694493BC8593A79/VC_redist.x86.exe'
+    hyperv-iso.windows-server-2022: Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\chocolatey\vcredist140\14.38.33135\VC_redist.x86.exe (13.21 MB).
+    hyperv-iso.windows-server-2022: Download of VC_redist.x86.exe (13.21 MB) completed.
+    hyperv-iso.windows-server-2022: Hashes match.
+    hyperv-iso.windows-server-2022: Installing vcredist140-x86...
+    hyperv-iso.windows-server-2022: vcredist140-x86 has been installed.
+    hyperv-iso.windows-server-2022: Downloading vcredist140-x64 64 bit
+    hyperv-iso.windows-server-2022:   from 'https://download.visualstudio.microsoft.com/download/pr/6ba404bb-6312-403e-83be-04b062914c98/1AD7988C17663CC742B01BEF1A6DF2ED1741173009579AD50A94434E54F56073/VC_redist.x64.exe'
+    hyperv-iso.windows-server-2022: Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\chocolatey\vcredist140\14.38.33135\VC_redist.x64.exe (24.24 MB).
+    hyperv-iso.windows-server-2022: Download of VC_redist.x64.exe (24.24 MB) completed.
+    hyperv-iso.windows-server-2022: Hashes match.
+    hyperv-iso.windows-server-2022: Installing vcredist140-x64...
+    hyperv-iso.windows-server-2022: vcredist140-x64 has been installed.
+    hyperv-iso.windows-server-2022:   vcredist140 may be able to be automatically uninstalled.
+    hyperv-iso.windows-server-2022:  The install of vcredist140 was successful.
+    hyperv-iso.windows-server-2022:   Software installed as 'exe', install location is likely default.
+    hyperv-iso.windows-server-2022: Progress: Downloading vcredist2015 14.0.24215.20170201... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: vcredist2015 v14.0.24215.20170201 [Approved]
+    hyperv-iso.windows-server-2022: vcredist2015 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  The install of vcredist2015 was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\vcredist2015'
+    hyperv-iso.windows-server-2022: Progress: Downloading python312 3.12.2... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: python312 v3.12.2 [Approved]
+    hyperv-iso.windows-server-2022: python312 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Installing 64-bit python312...
+    hyperv-iso.windows-server-2022: python312 has been installed.
+    hyperv-iso.windows-server-2022: Added C:\ProgramData\chocolatey\bin\python3.12.exe shim pointed to 'c:\python312\python.exe'.
+    hyperv-iso.windows-server-2022: Python installed to: 'C:\Python312'
+    hyperv-iso.windows-server-2022: Restricting write permissions to Administrators
+    hyperv-iso.windows-server-2022:   python312 can be automatically uninstalled.
+    hyperv-iso.windows-server-2022: Environment Vars (like PATH) have changed. Close/reopen your shell to
+    hyperv-iso.windows-server-2022:  see the changes (or in powershell/cmd.exe just type `refreshenv`).
+    hyperv-iso.windows-server-2022:  The install of python312 was successful.
+    hyperv-iso.windows-server-2022:   Software installed as 'exe', install location is likely default.
+    hyperv-iso.windows-server-2022: Progress: Downloading python3 3.12.2... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: python3 v3.12.2 [Approved]
+    hyperv-iso.windows-server-2022: python3 package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  The install of python3 was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\python3'
+    hyperv-iso.windows-server-2022: Progress: Downloading python 3.12.2... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: python v3.12.2 [Approved]
+    hyperv-iso.windows-server-2022: python package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  The install of python was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\python'
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Chocolatey installed 13/13 packages.
+    hyperv-iso.windows-server-2022:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Installed:
+    hyperv-iso.windows-server-2022:  - chocolatey-compatibility.extension v1.0.0
+    hyperv-iso.windows-server-2022:  - chocolatey-core.extension v1.4.0
+    hyperv-iso.windows-server-2022:  - chocolatey-windowsupdate.extension v1.0.5
+    hyperv-iso.windows-server-2022:  - KB2919355 v1.0.20160915
+    hyperv-iso.windows-server-2022:  - KB2919442 v1.0.20160915
+    hyperv-iso.windows-server-2022:  - KB2999226 v1.0.20181019
+    hyperv-iso.windows-server-2022:  - KB3033929 v1.0.5
+    hyperv-iso.windows-server-2022:  - KB3035131 v1.0.3
+    hyperv-iso.windows-server-2022:  - python v3.12.2
+    hyperv-iso.windows-server-2022:  - python3 v3.12.2
+    hyperv-iso.windows-server-2022:  - python312 v3.12.2
+    hyperv-iso.windows-server-2022:  - vcredist140 v14.38.33135
+    hyperv-iso.windows-server-2022:  - vcredist2015 v14.0.24215.20170201
+    hyperv-iso.windows-server-2022: Chocolatey v2.2.2
+    hyperv-iso.windows-server-2022: Installing the following packages:
+    hyperv-iso.windows-server-2022: git
+    hyperv-iso.windows-server-2022: By installing, you accept licenses for the packages.
+    hyperv-iso.windows-server-2022: Progress: Downloading git.install 2.44.0... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: git.install v2.44.0 [Approved]
+    hyperv-iso.windows-server-2022: git.install package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Using Git LFS
+    hyperv-iso.windows-server-2022: Installing 64-bit git.install...
+    hyperv-iso.windows-server-2022: git.install has been installed.
+    hyperv-iso.windows-server-2022: git.install installed to 'C:\Program Files\Git'
+    hyperv-iso.windows-server-2022:   git.install can be automatically uninstalled.
+    hyperv-iso.windows-server-2022: Environment Vars (like PATH) have changed. Close/reopen your shell to
+    hyperv-iso.windows-server-2022:  see the changes (or in powershell/cmd.exe just type `refreshenv`).
+    hyperv-iso.windows-server-2022:  The install of git.install was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\Program Files\Git\'
+    hyperv-iso.windows-server-2022: Progress: Downloading git 2.44.0... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: git v2.44.0 [Approved]
+    hyperv-iso.windows-server-2022: git package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022:  The install of git was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\git'
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Chocolatey installed 2/2 packages.
+    hyperv-iso.windows-server-2022:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    hyperv-iso.windows-server-2022: Chocolatey v2.2.2
+    hyperv-iso.windows-server-2022: Installing the following packages:
+    hyperv-iso.windows-server-2022: sysinternals
+    hyperv-iso.windows-server-2022: By installing, you accept licenses for the packages.
+    hyperv-iso.windows-server-2022: Progress: Downloading sysinternals 2024.2.13... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: sysinternals v2024.2.13 [Approved]
+    hyperv-iso.windows-server-2022: sysinternals package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Sysinternals Suite is going to be installed in 'C:\ProgramData\chocolatey\lib\sysinternals\tools'
+    hyperv-iso.windows-server-2022: Downloading sysinternals
+    hyperv-iso.windows-server-2022:   from 'https://download.sysinternals.com/files/SysinternalsSuite.zip'
+    hyperv-iso.windows-server-2022: Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\chocolatey\sysinternals\2024.2.13\SysinternalsSuite.zip (50.75 MB).
+    hyperv-iso.windows-server-2022: Download of SysinternalsSuite.zip (50.75 MB) completed.
+    hyperv-iso.windows-server-2022: Hashes match.
+    hyperv-iso.windows-server-2022: Extracting C:\Users\Administrator\AppData\Local\Temp\chocolatey\sysinternals\2024.2.13\SysinternalsSuite.zip to C:\ProgramData\chocolatey\lib\sysinternals\tools...
+    hyperv-iso.windows-server-2022: C:\ProgramData\chocolatey\lib\sysinternals\tools
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for accesschk.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for accesschk64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for AccessEnum.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ADExplorer.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ADExplorer64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ADInsight.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ADInsight64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for adrestore.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for adrestore64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Autologon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Autologon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Autoruns.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Autoruns64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for autorunsc.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for autorunsc64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Bginfo.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Bginfo64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Cacheset.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Cacheset64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Clockres.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Clockres64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Contig.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Contig64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Coreinfo.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Coreinfo64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for CPUSTRES.EXE
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for CPUSTRES64.EXE
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ctrl2cap.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Dbgview.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for dbgview64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Desktops.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Desktops64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for disk2vhd.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for disk2vhd64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for diskext.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for diskext64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Diskmon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Diskmon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for DiskView.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for DiskView64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for du.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for du64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for efsdump.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for FindLinks.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for FindLinks64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for handle.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for handle64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for hex2dec.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for hex2dec64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for junction.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for junction64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ldmdump.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Listdlls.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Listdlls64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for livekd.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for livekd64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for LoadOrd.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for LoadOrd64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for LoadOrdC.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for LoadOrdC64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for logonsessions.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for logonsessions64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for movefile.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for movefile64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for notmyfault.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for notmyfault64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for notmyfaultc.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for notmyfaultc64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ntfsinfo.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ntfsinfo64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pendmoves.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pendmoves64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pipelist.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pipelist64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for portmon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for procdump.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for procdump64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for procexp.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for procexp64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Procmon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Procmon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsExec.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsExec64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psfile.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psfile64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsGetsid.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsGetsid64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsInfo.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsInfo64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pskill.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pskill64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pslist.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pslist64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsLoggedon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsLoggedon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psloglist.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psloglist64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pspasswd.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pspasswd64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psping.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psping64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsService.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for PsService64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psshutdown.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for psshutdown64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pssuspend.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for pssuspend64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for RAMMap.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for RAMMap64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for RDCMan.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for RegDelNull.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for RegDelNull64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for regjump.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ru.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ru64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sdelete.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sdelete64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ShareEnum.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ShareEnum64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ShellRunas.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sigcheck.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sigcheck64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for streams.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for streams64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for strings.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for strings64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sync.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for sync64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Sysmon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Sysmon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for tcpvcon.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for tcpvcon64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for tcpview.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for tcpview64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Testlimit.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Testlimit64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for vmmap.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for vmmap64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Volumeid.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Volumeid64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for whois.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for whois64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Winobj.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Winobj64.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ZoomIt.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for ZoomIt64.exe
+    hyperv-iso.windows-server-2022:  The install of sysinternals was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\sysinternals\tools'
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Chocolatey installed 1/1 packages.
+    hyperv-iso.windows-server-2022:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    hyperv-iso.windows-server-2022: Chocolatey v2.2.2
+    hyperv-iso.windows-server-2022: Installing the following packages:
+    hyperv-iso.windows-server-2022: bginfo
+    hyperv-iso.windows-server-2022: By installing, you accept licenses for the packages.
+    hyperv-iso.windows-server-2022: Progress: Downloading bginfo 4.32... 100%
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: bginfo v4.32.0 [Approved]
+    hyperv-iso.windows-server-2022: bginfo package files install completed. Performing other installation steps.
+    hyperv-iso.windows-server-2022: Downloading bginfo
+    hyperv-iso.windows-server-2022:   from 'https://download.sysinternals.com/files/BGInfo.zip'
+    hyperv-iso.windows-server-2022: Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\chocolatey\bginfo\4.32.0\BGInfo.zip (2.22 MB).
+    hyperv-iso.windows-server-2022: Download of BGInfo.zip (2.22 MB) completed.
+    hyperv-iso.windows-server-2022: Hashes match.
+    hyperv-iso.windows-server-2022: Extracting C:\Users\Administrator\AppData\Local\Temp\chocolatey\bginfo\4.32.0\BGInfo.zip to C:\ProgramData\chocolatey\lib\bginfo\tools...
+    hyperv-iso.windows-server-2022: C:\ProgramData\chocolatey\lib\bginfo\tools
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Bginfo.exe
+    hyperv-iso.windows-server-2022:  ShimGen has successfully created a shim for Bginfo64.exe
+    hyperv-iso.windows-server-2022:  The install of bginfo was successful.
+    hyperv-iso.windows-server-2022:   Software installed to 'C:\ProgramData\chocolatey\lib\bginfo\tools'
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Chocolatey installed 1/1 packages.
+    hyperv-iso.windows-server-2022:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+==> hyperv-iso.windows-server-2022: Gracefully halting virtual machine...
+==> hyperv-iso.windows-server-2022: Waiting for vm to be powered down...
+==> hyperv-iso.windows-server-2022: Unmount/delete secondary dvd drives...
+==> hyperv-iso.windows-server-2022: Unmount/delete Integration Services dvd drive...
+==> hyperv-iso.windows-server-2022: Unmount/delete os dvd drive...
+==> hyperv-iso.windows-server-2022: Delete os dvd drives controller 0 location 1 ...
+==> hyperv-iso.windows-server-2022: Unmount/delete floppy drive (Run)...
+==> hyperv-iso.windows-server-2022: Compacting disks...
+    hyperv-iso.windows-server-2022: Compacting disk: packer-windows-server-2022.vhdx
+    hyperv-iso.windows-server-2022: Disk size is unchanged
+==> hyperv-iso.windows-server-2022: Exporting virtual machine...
+==> hyperv-iso.windows-server-2022: Collating build artifacts...
+==> hyperv-iso.windows-server-2022: Cleanup floppy drive...
+==> hyperv-iso.windows-server-2022: Unregistering and deleting virtual machine...
+==> hyperv-iso.windows-server-2022: Deleting build directory...
+Build 'hyperv-iso.windows-server-2022' finished after 14 minutes 48 seconds.
+
+==> Wait completed after 14 minutes 48 seconds
+
+==> Builds finished. The artifacts of successful builds are:
+--> hyperv-iso.windows-server-2022: VM files in directory: E:/Hyper-V/Templates/win2022
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] echo
+Testing...
+[Pipeline] powershell
+03/04/2024 11:24:57	Info	
+03/04/2024 11:24:57	Info	======================================================================
+03/04/2024 11:24:57	Info	Create Folder Structure
+03/04/2024 11:24:57	Info	======================================================================
+03/04/2024 11:24:57	Info	
+03/04/2024 11:24:57	Info	E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks path not found
+03/04/2024 11:24:57	Info	Creating path E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks
+
+
+    Directory: E:\Hyper-V\VirtualMachines\win-20240304112456957
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----          3/4/2024  11:24 AM                Virtual Hard Disks                                                   
+03/04/2024 11:24:57	Info	Path created successfully E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks
+True
+03/04/2024 11:24:57	Info	
+03/04/2024 11:24:57	Info	======================================================================
+03/04/2024 11:24:57	Info	Copy the template vhdx
+03/04/2024 11:24:57	Info	======================================================================
+03/04/2024 11:24:57	Info	
+03/04/2024 11:25:12	Info	
+03/04/2024 11:25:12	Info	======================================================================
+03/04/2024 11:25:12	Info	Create the VM
+03/04/2024 11:25:12	Info	======================================================================
+03/04/2024 11:25:12	Info	
+
+Name             : win-20240304112456957
+State            : Off
+CpuUsage         : 0
+MemoryAssigned   : 0
+MemoryDemand     : 0
+MemoryStatus     : 
+Uptime           : 00:00:00
+Status           : Operating normally
+ReplicationState : Disabled
+Generation       : 1
+
+03/04/2024 11:25:16	Info	
+03/04/2024 11:25:16	Info	======================================================================
+03/04/2024 11:25:16	Info	Set the number of processors
+03/04/2024 11:25:16	Info	======================================================================
+03/04/2024 11:25:16	Info	
+True
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+Deploying...
+[Pipeline] echo
+Copy the completed image over to the the templates folder
+[Pipeline] echo
+Delete the test build
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Pipeline completed successfully!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+

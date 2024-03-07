@@ -6,6 +6,8 @@ param (
     $generation = 1,
     $memory = (2*1024*1024*1024),
     $processorCount = 2,
+    $remoteuser = "Administrator",
+    $remotepass = "packer",
     $createVM = $true
     )
 
@@ -13,6 +15,10 @@ param (
 $myscriptpath = $MyInvocation.MyCommand.Path
 $myscriptpathparent = (get-item $myscriptpath).Directory
 . "$myscriptpathparent\provisionhv-functions.ps1"
+
+$secstr = New-Object -TypeName System.Security.SecureString
+$remotepass.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}
+$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $remoteuser, $secstr
 
 #======================================
 Write-Output "Read in State JSON"
@@ -76,6 +82,7 @@ for ( $i = 1 ; $i -le 120 ; $i++){
     $tempvm = get-vm -Name $VMName
     if ($tempvm.NetworkAdapters[0].IPAddresses[0]) {
         $ip = $tempvm.NetworkAdapters[0].IPAddresses[0]
+        Write-Output "Found IP ($ip)"
         Add-Member -InputObject $oState -Name "ip" -Value $tempvm.NetworkAdapters[0].IPAddresses[0] -MemberType NoteProperty
         $i = 10000
     } else {
@@ -92,7 +99,7 @@ for ( $i = 0 ; $i -le 120 ; $i = $i + 5){
         Add-Member -InputObject $oState -Name "hostname" -Value $result.trim() -MemberType NoteProperty
         $i = 10000
     } else {
-        Write-Output "$test : Waiting to connect to Hyper-V vm ($i)"
+        Write-Output "Waiting to connect to Hyper-V vm ($i)"
         start-sleep 5
     }
 }

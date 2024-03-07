@@ -19,15 +19,9 @@ if ($env:BUILD_TAG){
 
 if ( Test-path -path $jsonPath ) { $oState = Get-Content -Path $jsonPath | ConvertFrom-Json }
 
-for ( $i = 1 ; $i -le 180 ; $i++){
-    $tempvm = get-vm -Name $oState.vmname
-    if ($tempvm.NetworkAdapters[0].IPAddresses[0]) {
-        $ip = $tempvm.NetworkAdapters[0].IPAddresses[0]
-        $i = 10000
-    }
-    start-sleep 1
-}
+$tempvm = get-vm $oState.vmname
 
+Write-Output "Perform $test test"
 switch ($test){
     "vmstatus" {
         if ($tempvm.status -like "Operating Normally"){Write-Output "$test : passed"} else {throw "$test : failed"}
@@ -40,11 +34,8 @@ switch ($test){
         if ($result){Write-Output "$test : passed"} else {throw "$test : failed"}
     }
     "python" {
-        1..180 | foreach {
-            $result = Invoke-Command -vmname $oState.vmname -Credential $cred -ScriptBlock {cmd /c python --version}
-            if ($result -like "*3.12.2") {Write-Output "$test : passed"} else {Write-Output "$test : failed"}
-            sleep 1
-        }
+        $result = Invoke-Command -vmname $oState.vmname -Credential $cred -ScriptBlock {cmd /c python --version} -ErrorAction SilentlyContinue
+        if ($result -like "*3.12.2") { Write-Output "$test : passed" } else { Write-Output "$test : failed" }
     }
     "git" {
         $result = Invoke-Command -vmname $oState.vmname -Credential $cred -ScriptBlock {cmd /c git --version}

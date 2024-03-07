@@ -17,7 +17,7 @@ pipeline {
                 echo 'Test for VM IP...'
                 powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "ip"'
                 echo 'Test WINRM Connection...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "ping"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "WINRM"'
                 echo 'Test Python version...'
                 powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "python"'
                 echo 'Test GIT version...'

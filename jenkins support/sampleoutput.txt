@@ -6,7 +6,7 @@ Running on Jenkins in C:\Users\psmanage\AppData\Local\Jenkins\.jenkins\workspace
 [Pipeline] stage
 [Pipeline] { (Build)
 [Pipeline] echo
-Building...
+Create Image...
 [Pipeline] powershell
 hyperv-iso.windows-server-2022: output will be in this color.
 
@@ -44,7 +44,7 @@ hyperv-iso.windows-server-2022: output will be in this color.
     hyperv-iso.windows-server-2022: WinRM connected.
 ==> hyperv-iso.windows-server-2022: Connected to WinRM!
 ==> hyperv-iso.windows-server-2022: Provisioning with Powershell...
-==> hyperv-iso.windows-server-2022: Provisioning with powershell script: C:\Users\psmanage\AppData\Local\Temp\powershell-provisioner4023423735
+==> hyperv-iso.windows-server-2022: Provisioning with powershell script: C:\Users\psmanage\AppData\Local\Temp\powershell-provisioner219052060
     hyperv-iso.windows-server-2022: Forcing web requests to allow TLS v1.2 (Required for requests to Chocolatey.org)
     hyperv-iso.windows-server-2022: Getting latest version of the Chocolatey package for download.
     hyperv-iso.windows-server-2022: Not using proxy.
@@ -240,6 +240,10 @@ hyperv-iso.windows-server-2022: output will be in this color.
     hyperv-iso.windows-server-2022:
     hyperv-iso.windows-server-2022: Chocolatey installed 2/2 packages.
     hyperv-iso.windows-server-2022:  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+    hyperv-iso.windows-server-2022:
+    hyperv-iso.windows-server-2022: Enjoy using Chocolatey? Explore more amazing features to take your
+    hyperv-iso.windows-server-2022: experience to the next level at
+    hyperv-iso.windows-server-2022:  https://chocolatey.org/compare
     hyperv-iso.windows-server-2022: Chocolatey v2.2.2
     hyperv-iso.windows-server-2022: Installing the following packages:
     hyperv-iso.windows-server-2022: sysinternals
@@ -444,9 +448,9 @@ hyperv-iso.windows-server-2022: output will be in this color.
 ==> hyperv-iso.windows-server-2022: Cleanup floppy drive...
 ==> hyperv-iso.windows-server-2022: Unregistering and deleting virtual machine...
 ==> hyperv-iso.windows-server-2022: Deleting build directory...
-Build 'hyperv-iso.windows-server-2022' finished after 14 minutes 48 seconds.
+Build 'hyperv-iso.windows-server-2022' finished after 15 minutes 17 seconds.
 
-==> Wait completed after 14 minutes 48 seconds
+==> Wait completed after 15 minutes 17 seconds
 
 ==> Builds finished. The artifacts of successful builds are:
 --> hyperv-iso.windows-server-2022: VM files in directory: E:/Hyper-V/Templates/win2022
@@ -455,37 +459,28 @@ Build 'hyperv-iso.windows-server-2022' finished after 14 minutes 48 seconds.
 [Pipeline] stage
 [Pipeline] { (Test)
 [Pipeline] echo
-Testing...
+Provision Test VM from Image...
 [Pipeline] powershell
-03/04/2024 11:24:57	Info	
-03/04/2024 11:24:57	Info	======================================================================
-03/04/2024 11:24:57	Info	Create Folder Structure
-03/04/2024 11:24:57	Info	======================================================================
-03/04/2024 11:24:57	Info	
-03/04/2024 11:24:57	Info	E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks path not found
-03/04/2024 11:24:57	Info	Creating path E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks
+Read in State JSON
+buildtag : jenkins-Windows 2022 Image Creation-45
+vmname : win-20240307020503288
+Create Folder Structure
+03/07/2024 02:05:03	Info	E:\Hyper-V\VirtualMachines\win-20240307020503288\Virtual Hard Disks path not found
+03/07/2024 02:05:03	Info	Creating path E:\Hyper-V\VirtualMachines\win-20240307020503288\Virtual Hard Disks
 
 
-    Directory: E:\Hyper-V\VirtualMachines\win-20240304112456957
+    Directory: E:\Hyper-V\VirtualMachines\win-20240307020503288
 
 
 Mode                 LastWriteTime         Length Name                                                                 
 ----                 -------------         ------ ----                                                                 
-d-----          3/4/2024  11:24 AM                Virtual Hard Disks                                                   
-03/04/2024 11:24:57	Info	Path created successfully E:\Hyper-V\VirtualMachines\win-20240304112456957\Virtual Hard Disks
+d-----          3/7/2024   2:05 AM                Virtual Hard Disks                                                   
+03/07/2024 02:05:03	Info	Path created successfully E:\Hyper-V\VirtualMachines\win-20240307020503288\Virtual Hard Disks
 True
-03/04/2024 11:24:57	Info	
-03/04/2024 11:24:57	Info	======================================================================
-03/04/2024 11:24:57	Info	Copy the template vhdx
-03/04/2024 11:24:57	Info	======================================================================
-03/04/2024 11:24:57	Info	
-03/04/2024 11:25:12	Info	
-03/04/2024 11:25:12	Info	======================================================================
-03/04/2024 11:25:12	Info	Create the VM
-03/04/2024 11:25:12	Info	======================================================================
-03/04/2024 11:25:12	Info	
+Copy the template vhdx
+Create the VM
 
-Name             : win-20240304112456957
+Name             : win-20240307020503288
 State            : Off
 CpuUsage         : 0
 MemoryAssigned   : 0
@@ -496,22 +491,79 @@ Status           : Operating normally
 ReplicationState : Disabled
 Generation       : 1
 
-03/04/2024 11:25:16	Info	
-03/04/2024 11:25:16	Info	======================================================================
-03/04/2024 11:25:16	Info	Set the number of processors
-03/04/2024 11:25:16	Info	======================================================================
-03/04/2024 11:25:16	Info	
-True
+Set the number of processors
+Save State to JSON
+Check Hyper-V for vm IP
+Waiting for IP (1)
+Waiting for IP (2)
+Waiting for IP (3)
+Waiting for IP (4)
+Waiting for IP (5)
+Waiting for IP (6)
+Waiting for IP (7)
+Waiting for IP (8)
+Waiting for IP (9)
+Waiting for IP (10)
+Waiting for IP (11)
+Waiting for IP (12)
+Waiting for IP (13)
+Waiting for IP (14)
+Waiting for IP (15)
+Waiting for IP (16)
+Waiting for IP (17)
+Waiting for IP (18)
+Waiting for IP (19)
+Waiting for IP (20)
+Found IP (192.168.86.61)
+Check for Hyper-V remote shell interface
+Waiting to connect to Hyper-V vm (0)
+Waiting to connect to Hyper-V vm (5)
+Waiting to connect to Hyper-V vm (10)
+Hyper-V console connection: Success (hostname: WIN-DRAGFJBNPOO)
+Write Vars to JSON
+[Pipeline] echo
+Test VM Status...
+[Pipeline] powershell
+Perform status test
+[Pipeline] echo
+Test for VM IP...
+[Pipeline] powershell
+Perform ip test
+ip : passed
+[Pipeline] echo
+Test WINRM Connection...
+[Pipeline] powershell
+Perform WINRM test
+WINRM : passed
+[Pipeline] echo
+Test Python version...
+[Pipeline] powershell
+Perform python test
+python : passed
+[Pipeline] echo
+Test GIT version...
+[Pipeline] powershell
+Perform git test
+git : passed
+[Pipeline] echo
+Test for sysinternals (junction)...
+[Pipeline] powershell
+Perform sysinternals test
+sysinternals : passed
+[Pipeline] echo
+Test for BGInfo (junction)...
+[Pipeline] powershell
+Perform bginfo test
+bginfo : passed
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Deploy)
 [Pipeline] echo
 Deploying...
-[Pipeline] echo
-Copy the completed image over to the the templates folder
-[Pipeline] echo
-Delete the test build
+[Pipeline] powershell
+Stop vm win-20240307020503288 and Remove
+Move the new template to the Templates folder
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage

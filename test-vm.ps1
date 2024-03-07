@@ -27,10 +27,10 @@ switch ($test){
         if ($tempvm.status -like "Operating Normally"){Write-Output "$test : passed"} else {throw "$test : failed"}
     }
     "ip" {
-        if ($ip -like "*.*.*.*"){Write-Output "$test : passed"} else {throw "$test : failed"}
+        if ($oState.ip -like "*.*.*.*"){Write-Output "$test : passed"} else {throw "$test : failed"}
     }
     "WINRM" {
-        $result = (Test-NetConnection -vmname $IP -CommonTCPPort WINRM).TcpTestSucceeded
+        $result = (Test-NetConnection -ComputerName $oState.ip -CommonTCPPort WINRM).TcpTestSucceeded
         if ($result){Write-Output "$test : passed"} else {throw "$test : failed"}
     }
     "python" {

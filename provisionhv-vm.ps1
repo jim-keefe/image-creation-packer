@@ -27,8 +27,8 @@ if ($env:BUILD_TAG){
 
 if ( Test-path -path $jsonPath ) { $oState = [pscustomobject](Get-Content -Path $jsonPath | ConvertFrom-Json) }
 
-"vmname : $($env:BUILD_TAG)"
-"vmname : $($oState.vmname)"
+"buildtag : $($env:BUILD_TAG)"
+"vmname : $($vmName)"
 #======================================
 Write-Output "Create Folder Structure"
 #======================================
@@ -73,7 +73,7 @@ Write-Output "Save State to JSON"
 
 Write-Output "Check Hyper-V for vm IP"
 for ( $i = 1 ; $i -le 120 ; $i++){
-    $tempvm = get-vm -Name $oState.vmname
+    $tempvm = get-vm -Name $VMName
     if ($tempvm.NetworkAdapters[0].IPAddresses[0]) {
         $ip = $tempvm.NetworkAdapters[0].IPAddresses[0]
         Add-Member -InputObject $oState -Name "ip" -Value $tempvm.NetworkAdapters[0].IPAddresses[0] -MemberType NoteProperty
@@ -86,7 +86,7 @@ for ( $i = 1 ; $i -le 120 ; $i++){
 
 Write-Output "Check for Hyper-V remote shell interface"
 for ( $i = 0 ; $i -le 120 ; $i = $i + 5){
-    $result = Invoke-Command -vmname $oState.vmname -Credential $cred -ScriptBlock {return $env:COMPUTERNAME} -ErrorAction SilentlyContinue
+    $result = Invoke-Command -vmname $VMName -Credential $cred -ScriptBlock {return $env:COMPUTERNAME} -ErrorAction SilentlyContinue
     if ($result) {
         Write-Output "Hyper-V console connection: Success (hostname: $result)"
         Add-Member -InputObject $oState -Name "hostname" -Value $result.trim() -MemberType NoteProperty

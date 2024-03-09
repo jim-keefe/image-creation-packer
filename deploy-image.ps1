@@ -1,21 +1,33 @@
-﻿$basepath = "E:\Hyper-V"
+﻿#================================================================
+Write-Output "Load state json"
+#================================================================
 
+$basepath = $env:BASE_HYPERV_PATH
 if ($env:BUILD_TAG){
     $jsonPath = "$basepath\Management\pipelineJSON\$($env:BUILD_TAG).json"
 } else {
-    $jsonPath = "$basepath\Management\pipelineJSON\$OSversion$("-")$OSflavor.json"   
+    $jsonPath = "$basepath\Management\pipelineJSON\$OSversion$("-")$OSflavor.json"
 }
-
 if ( Test-path -path $jsonPath ) { $oState = Get-Content -Path $jsonPath | ConvertFrom-Json }
 
-$tempvm = get-vm -Name $oState.vmname
+#================================================================
+Write-Output "Stop test vm $($oState.vmname) and Remove"
+#================================================================
 
-Write-Output "Stop vm $($oState.vmname) and Remove"
+$tempvm = get-vm -Name $oState.vmname
 Stop-VM -Name $oState.vmname -Force
 Remove-VM -Name $oState.vmname -Force
 Remove-Item -Path $tempvm.Path -Recurse -force
 
+#================================================================
 Write-Output "Move the new template to the Templates folder"
-$temptemplatepath = (get-item -Path $oState.vhdxtemplatepath).Directory.FullName
-Move-Item $oState.vhdxtemplatepath -Destination "$($oState.$basepath)\Templates"
-Remove-Item -Path $temptemplatepath -Recurse -force
+#================================================================
+
+$atemptemplatepath = (get-item -Path $oState.vhdxtemplatepath).Directory.Fullname -split "\\"
+$templatename = (get-item -Path $oState.vhdxtemplatepath).Name
+for ($i = 0 ; $i -lt $atemptemplatepath.count -1; $i++){ $templatepath = "$templatepath\$($atemptemplatepath[$i])" }
+
+if (Test-path -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])"){ remove-item -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])" -Force}
+Move-Item $oState.vhdxtemplatepath -Destination "$basepath\Templates" -Force
+Remove-Item -Path $templatepath.TrimStart("\") -Recurse -force
+Rename-Item "$basepath\Templates\$templatename" -NewName "$($templatename.TrimStart("packer-"))"

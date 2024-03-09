@@ -1,10 +1,11 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <settings pass="windowsPE">
         <component name="Microsoft-Windows-PnpCustomizationsWinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DriverPaths>
                 <PathAndCredentials wcm:keyValue="1" wcm:action="add">
-                    <Path>E:\Hayper-V</Path>
+                    <Path>E:\Hyper-V</Path>
                     <Credentials></Credentials>
                 </PathAndCredentials>
             </DriverPaths>
@@ -67,7 +68,7 @@
                     <!-- Get-WindowsImage -ImagePath D:\sources\install.wim -->
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/INDEX </Key>
-                            <Value>2</Value>
+                            <Value>1</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -85,8 +86,8 @@
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
-                <FullName>Packer</FullName>
-                <Organization>Packer</Organization>
+                <FullName>Jim210</FullName>
+                <Organization>Jim210</Organization>
             </UserData>
         </component>
     </settings>

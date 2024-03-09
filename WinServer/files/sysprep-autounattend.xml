@@ -51,5 +51,5 @@
             <DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
         </component>
     </settings>
-    <cpi:offlineImage cpi:source="wim:c:/dev/source/sources/install.wim#Windows Server 2022 SERVERDATACENTER" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source=""/>
 </unattend>

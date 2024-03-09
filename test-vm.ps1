@@ -1,16 +1,18 @@
 ﻿param (
-    $hyperVVMPath = "E:\Hyper-V\VirtualMachines",
     $test = "ping",
     $remoteuser = "Administrator",
-    $remotepass = "packer",
-    $jenkinsbuildtag = $null
+    $remotepass = "$($env:BUILD_LOCAL_ADMIN_PSW)"
     )
 
 $secstr = New-Object -TypeName System.Security.SecureString
 $remotepass.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $remoteuser, $secstr
 
-$basepath = "E:\Hyper-V"
+#================================================================
+Write-Output "Load state json"
+#================================================================
+
+$basepath = $env:BASE_HYPERV_PATH
 if ($env:BUILD_TAG){
     $jsonPath = "$basepath\Management\pipelineJSON\$($env:BUILD_TAG).json"
 } else {
@@ -21,7 +23,10 @@ if ( Test-path -path $jsonPath ) { $oState = Get-Content -Path $jsonPath | Conve
 
 $tempvm = get-vm $oState.vmname
 
+#================================================================
 Write-Output "Perform $test test"
+#================================================================
+
 switch ($test){
     "vmstatus" {
         if ($tempvm.status -like "Operating Normally"){Write-Output "$test : passed"} else {throw "$test : failed"}

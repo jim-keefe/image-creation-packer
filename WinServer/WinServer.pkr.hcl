@@ -18,7 +18,13 @@ variable "osselect" {
   default = "check"
 }
 
-source "hyperv-iso" "windows-server" {
+variable "lapw" {
+  type = string
+  sensitive = true
+  default = "${env("BUILD_LOCAL_ADMIN_PSW")}"
+}
+
+source "hyperv-iso" "9999999999" {
   iso_url      = "${var.isourl}"
   iso_checksum = "${var.isomd5}"
 
@@ -32,13 +38,13 @@ source "hyperv-iso" "windows-server" {
   disk_size      = 35000
   guest_additions_mode = "disable"
   headless       = true
-  output_directory = "E:/Hyper-V/Templates/${var.osyear}${var.osselect}"
+  output_directory = "E:/Hyper-V/Templates/Win${var.osyear}${var.osselect}"
   shutdown_command = "C:\\Windows\\system32\\Sysprep\\sysprep.exe /generalize /oobe /shutdown /unattend:A:\\sysprep-autounattend.xml"
   shutdown_timeout = "5m"
   switch_name    = "External Switch Wireless"
   communicator   = "winrm"
   winrm_username = "Administrator"
-  winrm_password = "packer"
+  winrm_password = "${var.lapw}"
   winrm_insecure = true
   winrm_use_ssl = true
   winrm_timeout  = "10m"
@@ -46,7 +52,7 @@ source "hyperv-iso" "windows-server" {
 
 build {
   sources = [
-    "source.hyperv-iso.windows-server",
+    "source.hyperv-iso.9999999999",
   ]
   provisioner "powershell" {
     inline = [

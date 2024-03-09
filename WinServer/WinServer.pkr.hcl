@@ -1,11 +1,11 @@
 variable "isourl" {
   type = string
-  default = "strawberry"
+  default = "check"
 }
 
 variable "isomd5" {
   type = string
-  default = "strawberry"
+  default = "check"
 }
 
 variable "osyear" {

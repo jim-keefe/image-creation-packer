@@ -1,11 +1,16 @@
 pipeline {
     agent any
-
+    
+    environment { 
+        BASE_HYPERV_PATH = 'e:\\Hyper-V'
+        BUILD_LOCAL_ADMIN = credentials('localadmin')
+    }
+    
     stages {
         stage('Build') {
             steps {
                 echo 'Create Image...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\Windows Server 2022\\\\create-image.ps1"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\WinServer\\\\create-image.ps1"'
             }
         }
         stage('Test') {

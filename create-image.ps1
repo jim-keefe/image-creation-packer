@@ -45,7 +45,7 @@ $clist = @{
     osversion = @{
         uniquetag = "InstallFrom"
         status = 0
-        search = "<Value>1</Value>"
+        search = "<Value>*</Value>"
         replace = "<Value>$osindex</Value>"
     }
 }

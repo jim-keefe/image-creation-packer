@@ -1,5 +1,5 @@
 param (
-    $basepath = "E:\Hyper-V",
+    $basepath = $env:BASE_HYPERV_PATH,
     $osversion = "win2022",
     $osflavor = "standard-eval",
     $isoname = "SERVER_EVAL_x64FRE_en-us.iso",
@@ -89,7 +89,14 @@ $oState | convertto-json | set-content -Path $jsonPath
 Write-Output "Execute the Packer Build"
 #================================================================
 
-$hclPath = "$basePath\Management\image-creation-packer\WinServer\WinServer.pkr.hcl"
+$hclTemplatePath = "$basePath\Management\image-creation-packer\WinServer\WinServer.pkr.hcl"
+$temphcl = get-content -Path $hclTemplatePath
+foreach ($line in $temphcl){
+    $line = $line.replace("9999999999","Win$($oState.osyear)$($oState.osselect)")
+    $newhcl = "$newhcl`r`n$line"
+}
+$hclPath = "$basePath\Management\image-creation-packer\WinServer\Win$($oState.osyear)$($oState.osselect).pkr.hcl"
+set-content -path $hclPath -Value $newhcl
 Set-Location (get-item $hclPath).Directory.FullName
 cmd.exe /c packer build -var "isourl=$isourl" -var "isomd5=$isomd5" -var "osyear=$($oState.osyear)" -var "osselect=$osSelect" $hclPath
 

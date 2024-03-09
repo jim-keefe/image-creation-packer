@@ -1,7 +1,7 @@
 ﻿param (
     $test = "ping",
     $remoteuser = "Administrator",
-    $remotepass = "packer"
+    $remotepass = "$($env:BUILD_LOCAL_ADMIN_PSW)"
     )
 
 $secstr = New-Object -TypeName System.Security.SecureString
@@ -12,7 +12,7 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 Write-Output "Load state json"
 #================================================================
 
-$basepath = "E:\Hyper-V"
+$basepath = $env:BASE_HYPERV_PATH
 if ($env:BUILD_TAG){
     $jsonPath = "$basepath\Management\pipelineJSON\$($env:BUILD_TAG).json"
 } else {

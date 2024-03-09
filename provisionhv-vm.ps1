@@ -5,7 +5,7 @@ param (
     $memory = (2*1024*1024*1024),
     $processorCount = 2,
     $remoteuser = "Administrator",
-    $remotepass = "packer",
+    $remotepass = "$($env:BUILD_LOCAL_ADMIN_PSW)",
     $createVM = $true
     )
 
@@ -22,7 +22,7 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 Write-Output "Read in State JSON"
 #================================================================
 
-$basepath = "E:\Hyper-V"
+$basepath = $env:BASE_HYPERV_PATH
 if ($env:BUILD_TAG){
     $jsonPath = "$basepath\Management\pipelineJSON\$($env:BUILD_TAG).json"
 } else {
@@ -30,7 +30,7 @@ if ($env:BUILD_TAG){
 }
 
 if ( Test-path -path $jsonPath ) { $oState = [pscustomobject](Get-Content -Path $jsonPath | ConvertFrom-Json) }
-$vhdxTemplatePath = "$basePath\Templates\$($oState.osYear)$($oState.osSelect)\Virtual Hard Disks\packer-windows-server.vhdx"
+$vhdxTemplatePath = "$basePath\Templates\Win$($oState.osYear)$($oState.osSelect)\Virtual Hard Disks\packer-Win$($oState.osYear)$($oState.osSelect).vhdx"
 $hyperVVMPath = "$basePath\VirtualMachines"
 
 #================================================================

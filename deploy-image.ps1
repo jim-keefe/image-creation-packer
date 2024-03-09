@@ -2,11 +2,11 @@
 Write-Output "Load state json"
 #================================================================
 
-$basepath = "E:\Hyper-V"
+$basepath = $env:BASE_HYPERV_PATH
 if ($env:BUILD_TAG){
     $jsonPath = "$basepath\Management\pipelineJSON\$($env:BUILD_TAG).json"
 } else {
-    $jsonPath = "$basepath\Management\pipelineJSON\$OSversion$("-")$OSflavor.json"   
+    $jsonPath = "$basepath\Management\pipelineJSON\$OSversion$("-")$OSflavor.json"
 }
 if ( Test-path -path $jsonPath ) { $oState = Get-Content -Path $jsonPath | ConvertFrom-Json }
 
@@ -29,3 +29,4 @@ for ($i = 0 ; $i -lt $atemptemplatepath.count -1; $i++){ $templatepath = "$templ
 if (Test-path -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])"){ remove-item -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])" -Force}
 Move-Item $oState.vhdxtemplatepath -Destination "$basepath\Templates" -Force
 Remove-Item -Path $templatepath.TrimStart("\") -Recurse -force
+Rename-Item "$basepath\Templates\Win"

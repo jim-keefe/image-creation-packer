@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Create Image...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\WinServer\\\\create-image.ps1"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\create-image.ps1"'
             }
         }
         stage('Test') {

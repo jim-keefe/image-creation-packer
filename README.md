@@ -40,6 +40,8 @@ packer build win2022-standard-eval.pkr.hcl
 3. Edit paths in the groovy script as needed.
 
 ## Sample Output
+### Jenkins
+![alt text](<screenshots/Screenshot 2024-03-07 114224.png>)
 ### Packer
 ![alt text](<screenshots/Screenshot 2024-02-29 211147.png>)
 ![alt text](<screenshots/Screenshot 2024-02-29 211830.png>)
@@ -57,3 +59,5 @@ packer build win2022-standard-eval.pkr.hcl
 * streamline the code (i.e. json update functions).
 * Add security patching to image creation.
 * Schedule pipeline runs (or trigger them).
+* Add Ansible and possibly AWX to the automation stack.
+* Add a WSUS server to manage Windows security patches.

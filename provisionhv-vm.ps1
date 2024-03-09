@@ -86,7 +86,7 @@ for ( $i = 1 ; $i -le 120 ; $i++){
 }
 
 #================================================================
-Write-Output "Check for Hyper-V remote shell interface"
+Write-Output "Check for Hyper-V remote shell interface on $vmname"
 #================================================================
 
 for ( $i = 0 ; $i -le 120 ; $i = $i + 5){
@@ -96,7 +96,7 @@ for ( $i = 0 ; $i -le 120 ; $i = $i + 5){
         Add-Member -InputObject $oState -Name "hostname" -Value $result.trim() -MemberType NoteProperty
         $i = 10000
     } else {
-        Write-Output "Waiting to connect to Hyper-V vm ($i)"
+        Write-Output "Waiting to connect to Hyper-V test vm ($i)"
         start-sleep 5
     }
 }

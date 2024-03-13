@@ -31,6 +31,7 @@ This doc is intended to be a brief overview of getting started with autounattend
 5. Add the AutoLogon Component under wow64_Microsoft-Windows-Shell-Setup to pass 4
 6. Right click on Components in the asnswer file to add a command to run in pass 4
 7. Configure the values for the component and each parent node above (See examples in this repo... and others).
+7. Check the Hide Sensitive Information from the Options menus selection. Note that senesitve information is ONLY ENCODED NOT ENCRYPTED.
 8. Save the answer file.
 
 ## Reference

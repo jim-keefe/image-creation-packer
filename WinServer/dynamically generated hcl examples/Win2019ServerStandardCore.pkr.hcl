@@ -25,15 +25,6 @@ variable "lapw" {
   default = "${env("BUILD_LOCAL_ADMIN_PSW")}"
 }
 
-packer {
-  required_plugins {
-    windows-update = {
-      version = "0.15.0"
-      source = "github.com/rgl/windows-update"
-    }
-  }
-}
-
 source "hyperv-iso" "Win2019ServerStandardCore" {
   iso_url      = "${var.isourl}"
   iso_checksum = "${var.isomd5}"
@@ -51,20 +42,21 @@ source "hyperv-iso" "Win2019ServerStandardCore" {
   headless       = true
   output_directory = "E:/Hyper-V/Templates/Win${var.osyear}${var.osselect}"
   shutdown_command = "C:\\Windows\\system32\\Sysprep\\sysprep.exe /generalize /oobe /shutdown /unattend:A:\\sysprep-autounattend.xml"
-  shutdown_timeout = "10m"
+  shutdown_timeout = "5m"
   switch_name    = "External Switch Wireless"
   communicator   = "winrm"
   winrm_username = "Administrator"
   winrm_password = "${var.lapw}"
   winrm_insecure = true
   winrm_use_ssl = true
-  winrm_timeout  = "20m"
+  winrm_timeout  = "10m"
 }
 
 build {
   sources = [
     "source.hyperv-iso.Win2019ServerStandardCore",
   ]
+  
 
   provisioner "powershell" {
     inline = [
@@ -76,14 +68,4 @@ build {
       "choco install -y bginfo"
     ]
   }
-
-  provisioner "windows-update" {
-    search_criteria = "IsInstalled=0"
-    filters = [
-      "exclude:$_.Title -like '*Preview*'",
-      "include:$true",
-    ]
-    update_limit = 25
-  }
-  
 }

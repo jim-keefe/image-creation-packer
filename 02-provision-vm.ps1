@@ -12,7 +12,7 @@ param (
 # source in the functions
 $myscriptpath = $MyInvocation.MyCommand.Path
 $myscriptpathparent = (get-item $myscriptpath).Directory
-. "$myscriptpathparent\provisionhv-functions.ps1"
+. "$myscriptpathparent\pipeline-functions.ps1"
 
 $secstr = New-Object -TypeName System.Security.SecureString
 $remotepass.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}

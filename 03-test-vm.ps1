@@ -4,6 +4,11 @@
     $remotepass = "$($env:BUILD_LOCAL_ADMIN_PSW)"
     )
 
+# source in the functions
+$myscriptpath = $MyInvocation.MyCommand.Path
+$myscriptpathparent = (get-item $myscriptpath).Directory
+. "$myscriptpathparent\pipeline-functions.ps1"
+
 $secstr = New-Object -TypeName System.Security.SecureString
 $remotepass.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $remoteuser, $secstr

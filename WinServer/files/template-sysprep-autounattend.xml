@@ -24,8 +24,8 @@
             </WindowsFeatures>
             <AutoLogon>
                 <Password>
-                    <Value>cABhAGMAawBlAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
-                    <PlainText>false</PlainText>
+                    <Value>xxxxxxxxxx</Value>
+                    <PlainText>true</PlainText>
                 </Password>
                 <Enabled>false</Enabled>
                 <LogonCount>1</LogonCount>
@@ -33,8 +33,8 @@
             </AutoLogon>
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>cABhAGMAawBlAHIAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBQAGEAcwBzAHcAbwByAGQA</Value>
-                    <PlainText>false</PlainText>
+                    <Value>xxxxxxxxxx</Value>
+                    <PlainText>true</PlainText>
                 </AdministratorPassword>
             </UserAccounts>
             <TimeZone>Central Time</TimeZone>

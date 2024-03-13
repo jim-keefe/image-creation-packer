@@ -1,4 +1,9 @@
-﻿#================================================================
+﻿# source in the functions
+$myscriptpath = $MyInvocation.MyCommand.Path
+$myscriptpathparent = (get-item $myscriptpath).Directory
+. "$myscriptpathparent\pipeline-functions.ps1"
+
+#================================================================
 Write-Output "Load state json"
 #================================================================
 
@@ -30,4 +35,5 @@ for ($i = 0 ; $i -lt $atemptemplatepath.count -1; $i++){ $templatepath = "$templ
 if (Test-path -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])"){ remove-item -Path "$basepath\Templates\$(($oState.vhdxtemplatepath -split "\\")[-1])" -Force}
 Move-Item $oState.vhdxtemplatepath -Destination "$basepath\Templates" -Force
 Remove-Item -Path $templatepath.TrimStart("\") -Recurse -force
+if (Test-Path "$basepath\Templates\$($templatename.TrimStart("packer-"))"){ remove-item "$basepath\Templates\$($templatename.TrimStart("packer-"))" -force}
 Rename-Item "$basepath\Templates\$templatename" -NewName "$($templatename.TrimStart("packer-"))"

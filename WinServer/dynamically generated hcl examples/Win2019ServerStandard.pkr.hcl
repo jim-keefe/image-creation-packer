@@ -25,16 +25,7 @@ variable "lapw" {
   default = "${env("BUILD_LOCAL_ADMIN_PSW")}"
 }
 
-packer {
-  required_plugins {
-    windows-update = {
-      version = "0.15.0"
-      source = "github.com/rgl/windows-update"
-    }
-  }
-}
-
-source "hyperv-iso" "Win2019ServerStandardCore" {
+source "hyperv-iso" "Win2019ServerStandard" {
   iso_url      = "${var.isourl}"
   iso_checksum = "${var.isomd5}"
 
@@ -63,8 +54,9 @@ source "hyperv-iso" "Win2019ServerStandardCore" {
 
 build {
   sources = [
-    "source.hyperv-iso.Win2019ServerStandardCore",
+    "source.hyperv-iso.Win2019ServerStandard",
   ]
+  
 
   provisioner "powershell" {
     inline = [
@@ -76,14 +68,4 @@ build {
       "choco install -y bginfo"
     ]
   }
-
-  provisioner "windows-update" {
-    search_criteria = "IsInstalled=0"
-    filters = [
-      "exclude:$_.Title -like '*Preview*'",
-      "include:$true",
-    ]
-    update_limit = 25
-  }
-  
 }

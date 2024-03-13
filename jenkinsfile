@@ -1,42 +1,72 @@
 pipeline {
     agent any
     
+    parameters {
+        
+        choice(name: 'SELECTOS', choices: ['Win2022','Win2019','Win2016','Ubuntu','CentoOS'], description: 'Select the OS')
+        booleanParam(name: 'SELECTSTANDARD', defaultValue: true, description: 'True = Standard | False = Datacenter')
+        booleanParam(name: 'SELECTCORE', defaultValue: true, description: 'True = Core | False = GUI')
+        
+    }
+        
     environment { 
+        
         BASE_HYPERV_PATH = 'e:\\Hyper-V'
         BUILD_LOCAL_ADMIN = credentials('localadmin')
+        
     }
     
     stages {
+        
         stage('Build') {
             steps {
+                
+                echo '======================================================='
                 echo 'Create Image...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\create-image.ps1"'
+                echo '======================================================='
+                
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\01-create-image.ps1"'
             }
         }
+        
         stage('Test') {
             steps {
+                
+                echo '======================================================='
                 echo 'Provision Test VM from Image...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\provisionhv-vm.ps1"'
+                echo '======================================================='
+                
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\02-provision-vm.ps1"'
+                
+                echo '======================================================='
+                echo 'Perform configuration tests on Test VM'
+                echo '======================================================='
+                
                 echo 'Test VM Status...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "status"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "status"'
                 echo 'Test for VM IP...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "ip"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "ip"'
                 echo 'Test WINRM Connection...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "WINRM"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "WINRM"'
                 echo 'Test Python version...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "python"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "python"'
                 echo 'Test GIT version...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "git"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "git"'
                 echo 'Test for sysinternals (junction)...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "sysinternals"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "sysinternals"'
                 echo 'Test for BGInfo (junction)...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\test-vm.ps1" -test "bginfo"'
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\03-test-vm.ps1" -test "bginfo"'
             }
         }
+        
         stage('Deploy') {
             steps {
+                
+                echo '======================================================='
                 echo 'Deploying...'
-                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\deploy-image.ps1"'
+                echo '======================================================='
+                
+                powershell '. "E:\\\\Hyper-V\\\\Management\\\\image-creation-packer\\\\04-deploy-image.ps1"'
                 
             }
         }

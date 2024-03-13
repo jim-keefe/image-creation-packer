@@ -7,8 +7,8 @@ This is a CI/CD pipeline for creating OS images using Hashicorp Packer and Jenki
 At this time Windows Server 2019 and Windows Server 2022 are defined in code. With all of the variations for each OS (Standard, Datacenter AND... Core OR GUI of each), this result is a pipeline that produces 8 Windows image variations. The [sample output below](#sample) from Jenkins illustrates the variations.
 
 ## Features
-* The process is parametized at all levels. Jenkins takes input to start a job, passes value to the Powershell helpers, which then pass values to Packer and Hyper-V.
-* A simple web request can be used with an access token to initiate build jobs with parameters. [This included script](11-invoke-pipeline.ps1) invokes the 8 variations mentioned above. Where [March 12, 2024](#abcd) is the second Tuesday, this script can be used to update all Windows images.
+* The process is parameterized at all levels. Jenkins takes input to start a job, passes values to the Powershell helpers, which then pass values to Packer and Hyper-V.
+* A simple web request can be used with an access token to initiate build jobs with parameters. [This included script](11-invoke-pipeline.ps1) invokes the 8 variations mentioned above. Where [March 12, 2024](#abcd) is the second Tuesday, this script can be used to update all Windows images to include the latest security patches.
 * Credentials used during the process are vaulted in Jenkins. There are no clear text instances of passwords.
 * The process dynamically creates the packer HCL build file and the autounattend.xml from template files. This limits the number of files that are manually maintained.
 * JSON files are used to record values during the process. This is helpful for monitoring and troubleshooting.

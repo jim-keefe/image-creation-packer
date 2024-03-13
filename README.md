@@ -2,27 +2,30 @@
 
 ## Summary
 
-This repository has proof of concept code for automated creation of Windows Server VM images on Hyper-V using Hashicorp Packer and Jenkins in a CI/CD pipeline. The pipeline creates the image, provisions a test server from the image, tests the provisioned server for configuration and then deploys the exported image template for later consumption. See the sample output below for successful results.
+This is a CI/CD pipeline for creating OS images using Hashicorp Packer and Jenkins. The pipeline follows the basic build, test and deploy pattern. The Virtual Machine host in this case is provided by Hyper-V. 
+
+At this time Windows Server 2019 and Windows Server 2022 are defined. With all of the variations for each OS (Standard, Datacenter AND... Core OR GUI of each), this result is a pipeline that produces 8 Windows image variations. The [sample output](#abcd) from Jenkins illustrates the variations. 
 
 ## Features
-* **Local Admin credentials are vaulted inside of Jenkins.** The creds are made available in the session for the current job through environment variables. Where the creds are used in Packer, they have been tagged as sensitive. In Powershell, the creds are encypted using secure strings.
-* **The process is parametized.** About 5 beginning parameter values can be used to start the process.
-* **A JSON file is used to record values** during the various stages of the pipeline. In this way discovered values such as the virtual hard disk path can be used in later pipeline stages. The remaining JSON also serves as a record.
-* **The automation uses a templateautounattend.xml to dynamically generate the autounattend file** for the selected OS (i.e. Windows Server StandardCore, Standard, DatacenterCore or Datacenter)
-* **The automation uses a single Packer HCL file** as a template. The automation dynamically generates HCL files based on the selected OS parameters.
+* The process is parametized at all levels. Jenkins takes input to start a job, passes value to the Powershell helpers, which then pass values to Packer and Hyper-V.
+* A simple web request can be used with an access token to initiate build jobs with parameters. [This script](11-invoke-pipeline.ps1) invokes the 8 variations mentioned above. Where [March 12, 2024](#abcd) is the second Tuesday, this script can be used to update all Windows images.
+* Credentials used during the process are vaulted in Jenkins. There are no clear text instances of passwords.
+* The process dynamically creates the packer HCL build file and the autounattend.xml from template files. This limits the number of files that are manually maintained.
+* JSON files are used to record values during the process. This is helpful for monitoring and troubleshooting.
 
 ## Requirements
 
 * The Hyper-V service with Windows 10/11.
 * Packer from Hashicorp installed on Windows.
-* The Hyper-V extension for Packer.
-* A URL to the Windows Server 2022 ISO (a UNC path works too)
+* The [Hyper-V extension](https://developer.hashicorp.com/packer/integrations/hashicorp/hyperv) for Packer.
+* The [Windows-Update plugin](https://github.com/rgl/packer-plugin-windows-update) for packer.
+* ISOs in the ISOs folder defined in JSON. [This script](Management/CreateImageRecord-JSON.ps1) can create the JSON.
 * DHCP is required to get an IP and TCP connectivity.
   * Alternately a static IP could be used by configuring the NIC with a script in the autounattend.xml.
 * The Packer host needs WinRM connectivity on port 5986 to reach the target VM for the imaging process.
 * Jenkins installed on Windows.
 * The service account for Jenkins needs to be added to the Hyper-V administrators group.
-* A minumum folder structure that starts at base path... i.e.
+* A minumum folder structure that starts at the base path... i.e.
   * e:\Hyper-V\ISOs
   * e:\Hyper-V\Templates
   * e:\Hyper-V\VirtualMachines
@@ -47,14 +50,13 @@ packer build win2022-standard-eval.pkr.hcl
 5. Add the localadmin creds to a credentials record in Jenkins.
 3. Edit paths in the groovy script as needed.
 5. Edit the environment variables in the groovy script.
-6. Execute Build Now.
+6. Execute Build With Parameters.
+7. Fill in the parameter values in the form...
+* ![alt text](<screenshots/Screenshot 2024-03-12 223702.png>)
 
-## Sample Output
-### Jenkins
-![alt text](<screenshots/Screenshot 2024-03-07 114224.png>)
-### Packer
-![alt text](<screenshots/Screenshot 2024-02-29 211147.png>)
-![alt text](<screenshots/Screenshot 2024-02-29 211830.png>)
+## Jenkins Sample Output<a name="abcd">-</a>
+
+![alt text](<screenshots/Screenshot 2024-03-12 212633.png>)
 
 ## Future Enhancements
 

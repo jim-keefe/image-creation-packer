@@ -2,9 +2,9 @@
 
 ## Summary
 
-This is a CI/CD pipeline for creating OS images using Hashicorp Packer and Jenkins. The pipeline follows the basic build, test and deploy pattern. The Virtual Machine host in this case is provided by Hyper-V. 
+This is a CI/CD pipeline for creating OS images using Hashicorp Packer and Jenkins. The pipeline follows the basic build, test and deploy pattern. The Virtual Machine host platform in this case is Hyper-V. 
 
-At this time Windows Server 2019 and Windows Server 2022 are defined. With all of the variations for each OS (Standard, Datacenter AND... Core OR GUI of each), this result is a pipeline that produces 8 Windows image variations. The [sample output](#abcd) from Jenkins illustrates the variations. 
+At this time Windows Server 2019 and Windows Server 2022 are defined in code. With all of the variations for each OS (Standard, Datacenter AND... Core OR GUI of each), this result is a pipeline that produces 8 Windows image variations. The [sample output below](#abcd) from Jenkins illustrates the variations.
 
 ## Features
 * The process is parametized at all levels. Jenkins takes input to start a job, passes value to the Powershell helpers, which then pass values to Packer and Hyper-V.
@@ -19,13 +19,13 @@ At this time Windows Server 2019 and Windows Server 2022 are defined. With all o
 * Packer from Hashicorp installed on Windows.
 * The [Hyper-V extension](https://developer.hashicorp.com/packer/integrations/hashicorp/hyperv) for Packer.
 * The [Windows-Update plugin](https://github.com/rgl/packer-plugin-windows-update) for packer.
-* ISOs in the ISOs folder defined in JSON. [This script](Management/CreateImageRecord-JSON.ps1) can create the JSON.
+* ISOs in the ISOs folder defined in JSON. [This included script](Management/CreateImageRecord-JSON.ps1) can create the JSON.
 * DHCP is required to get an IP and TCP connectivity.
   * Alternately a static IP could be used by configuring the NIC with a script in the autounattend.xml.
 * The Packer host needs WinRM connectivity on port 5986 to reach the target VM for the imaging process.
 * Jenkins installed on Windows.
 * The service account for Jenkins needs to be added to the Hyper-V administrators group.
-* A minumum folder structure that starts at the base path... i.e.
+* A minumum folder structure that starts at the base path (e:\Hyper-V shown)... i.e.
   * e:\Hyper-V\ISOs
   * e:\Hyper-V\Templates
   * e:\Hyper-V\VirtualMachines
@@ -34,7 +34,7 @@ At this time Windows Server 2019 and Windows Server 2022 are defined. With all o
   * e:\Hyper-V\Management\jenkinsJSON
 
 ## High Level Usage
-### Packer
+### Manual with Packer
 1. Edit variables in the HCL file as needed for the Hyper-V environment.
 2. Confirm that the password specified for the Administrator account in the files/autounattend.xml matches the winrm_password specified in the Win2022-standard-eval.pkr.hcl file.
 3. Open a CMD shell with RunAs Administrator.
@@ -43,10 +43,10 @@ At this time Windows Server 2019 and Windows Server 2022 are defined. With all o
 ```
 packer build win2022-standard-eval.pkr.hcl
 ```
-### Jenkins
+### Pipelien with Jenkins
 1. Create a Jenkins Pipeline.
 2. Add the contents of the jenkinsfile to the script text area.
-    * Alternately, use SCM to clone the repo.
+    * Alternately, use SCM to clone the repo and specify a path to the Jenkinsfile.
 5. Add the localadmin creds to a credentials record in Jenkins.
 3. Edit paths in the groovy script as needed.
 5. Edit the environment variables in the groovy script.
@@ -54,25 +54,20 @@ packer build win2022-standard-eval.pkr.hcl
 7. Fill in the parameter values in the form...
 * ![alt text](<screenshots/Screenshot 2024-03-12 223702.png>)
 
-## Jenkins Sample Output<a name="abcd">-</a>
+## <a name="abcd">Jenkins Sample Output</a>
 
 ![alt text](<screenshots/Screenshot 2024-03-12 212633.png>)
 
 ## Future Enhancements
 
-* Add pipeline functionality for build and test.
-  * Update: A working pipeline has been created with Jenkins.
-* Further Parameterize the code to easily adapt to other OS versions and flavors.
-  * Update: Better parameterization has been added (3/9/2024).
-* Add security controls (jenkins creds or a vault)
-  * Jenkins creds are now used and plaintext passwords removed (3/9/2024).
 * **Add Linux image creation.**
 * **Add Terraform to the automation stack**
+* Configure TSL/SSL for Jenkins. 
 * Stand up a Linux Jenkins agent.
+* Look at the Rest API for Jenkins as an alterative to simple we requests.
 * Add firewall rules on the client system running Packer.
-* Add a prereqs script to create a folder structure and check the stack.
-* streamline the code (i.e. json update functions).
-* Add security patching to image creation.
+* Add a prereqs script to create a folder structure and check the automation stack.
+* Streamline/Clean the code (i.e. json update functions).
 * Schedule pipeline runs (or trigger them).
 * Add Ansible and possibly AWX to the automation stack.
 * Add a WSUS server to manage Windows security patches.

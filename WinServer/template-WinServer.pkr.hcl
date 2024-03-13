@@ -1,4 +1,3 @@
-
 variable "isourl" {
   type = string
   default = "check"
@@ -34,7 +33,7 @@ packer {
   }
 }
 
-source "hyperv-iso" "Win2019ServerStandardCore" {
+source "hyperv-iso" "9999999999" {
   iso_url      = "${var.isourl}"
   iso_checksum = "${var.isomd5}"
 
@@ -63,7 +62,7 @@ source "hyperv-iso" "Win2019ServerStandardCore" {
 
 build {
   sources = [
-    "source.hyperv-iso.Win2019ServerStandardCore",
+    "source.hyperv-iso.9999999999",
   ]
 
   provisioner "powershell" {
